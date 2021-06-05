@@ -7,8 +7,8 @@ int main() {
 						FPULazyStackingEnable();
 						RGBLED_Init();
 //					SevenSeg_Data(578,5);
-//					delay_ms(500);
-//					SevenSeg_Data(123,10);
+//				delay_ms(500);
+//				SevenSeg_Data(123,10);
 						
 						
 	
