@@ -31,4 +31,45 @@ void LCD_init(void){
       GPIO_PORTA_AMSEL_R&= ~0xE0; //disable analog selection
 }
 
+void LCD_Command(char com){ 			//Rs: PA5 ,, Rw: PA6 ,, EN: PA7 
+	
+			GPIO_PORTA_DATA_R = 0; 				//clear bits A5,A6 (rs&rw) 
+			GPIO_PORTB_DATA_R= com;
+			GPIO_PORTA_DATA_R|=0X80;			// enable A7 for Enable latch
+			delay_ms(1);
+			GPIO_PORTA_DATA_R &= ~0xE0; 	//return Enable latch back to zero //return Enable latch back to zero
+    
+}
+
+ 
+
+void LCD_Data(char data){
+	
+			GPIO_PORTA_DATA_R|=0X20;
+			GPIO_PORTA_DATA_R &= ~0X40; //RW=0
+			
+			GPIO_PORTB_DATA_R=data;
+			GPIO_PORTA_DATA_R|=0X80;// enable A7 for Enable latch
+			delay_ms(3);
+			GPIO_PORTA_DATA_R&=~0xE0; //return Enable latch back to zero
+}
+
+ 
+
+void LCD_start(){
+	
+			LCD_Command(0x30);//wake up
+			delay_us(40);//delay
+			LCD_Command(0x38);// 8 bit mode
+			delay_us(40);    //delay
+			LCD_Command(0x01);//clear lcd
+			delay_ms(3);    //delay
+			LCD_Command(0x0F); // Display ON cursor blinking
+			delay_us(40);    //delay
+			LCD_Command(0x80);// force cursor to begin at the beginning of 1st line
+			delay_us(40);//delay
+			LCD_Command(0x06);// increment cursor to right
+			delay_us(40);    //delay
+    
+}
 
