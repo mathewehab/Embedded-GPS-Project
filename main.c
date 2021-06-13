@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+ 
 unsigned char Gpsdata;             // for incoming serial data
 unsigned int finish =0;            // indicate end of message
 unsigned int pos_cnt=0;            // position counter
