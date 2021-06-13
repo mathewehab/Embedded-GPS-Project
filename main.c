@@ -128,11 +128,7 @@ void gps()
 	
 }
     
-double distance;
-double lat_old;
-double lg_old;
-double lat_new;
-double lg_new;
+
 
 
 int main() {
