@@ -105,7 +105,9 @@ void gps()
    finish = 0;
    pos_cnt = 0;
 	
-       
+   lat_raw = atof(lat);
+   lg_raw = atof(lg);
+	
    degrees_lat = ((int) lat_raw - ((int) lat_raw % 100)) / 100;
    minutes_lat = lat_raw - ((int) lat_raw - ((int) lat_raw % 100));
    seconds_lat = (lat_raw - (int) lat_raw) * 60;
