@@ -3,15 +3,17 @@
 
 void LED_Output();
 
-void TestDistance(double distance){
+void TestDistance(double distance) {
     				 
-				 if(distance >= 100.01){LED_Output(GREEN);}
-         else{LED_Output(BLUE);}           
-
+	if (distance >= 100.01) {
+		LED_Output(GREEN);
+	}
+	
+        else if (distance < 100.01) {
+		LED_Output(BLUE);
+	}           
 }
 
-unsigned int Total_distance;
-
-void distance_taken(double distance){  // accumulate calculated short distances
-    Total_distance += distance;
-} 
+double ConvertDegreeAngleTodouble(double degrees, double minutes, double seconds) {
+    return degrees + (minutes/60) + (seconds/3600);
+}
