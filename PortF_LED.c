@@ -1,6 +1,8 @@
 #include "tm4c123gh6pm.h"
 #include "define.h"
 
+void delay_ms(int n);
+
 void RGBLED_Init(void) {
 	
     SYSCTL_RCGCGPIO_R |= 0x20;
@@ -21,3 +23,22 @@ void LED_Output (unsigned char input){
      GPIO_PORTF_DATA_R  &= ~RGB ;
      GPIO_PORTF_DATA_R  |= input;
 }
+
+void LED_clear (unsigned char input){
+    
+     GPIO_PORTF_DATA_R  &= ~input ;
+}
+
+void LED_Output_sim (unsigned char input){
+    
+     GPIO_PORTF_DATA_R  |= input;
+}
+
+void Red_blink (){
+	LED_Output_sim (RED);
+	delay_ms(100);
+	LED_clear(RED);
+
+}
+	
+
