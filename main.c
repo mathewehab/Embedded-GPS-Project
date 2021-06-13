@@ -128,5 +128,49 @@ void gps()
 	
 }
     
+double distance;
+double lat_old;
+double lg_old;
+double lat_new;
+double lg_new;
+
+
+int main() {
+
+		Startup();
+		gps();
+		lat_old= Latitude;
+		lg_old= Longitude;
+		LED_Output(BLUE); // led goes blue to make sure that the program begins
+		SevenSeg_Data(888,1); // Test for the seven segment
+				
+		while(1){
+				
+//UART_outchar(UART_Inchar()); (for testing gps general output)
+				gps();
+//				UART_outstring("Latitiude :");
+//				UART_outstring(lat);
+//				UART_outstring("Longitude :");
+//				UART_outstring(lg);
+				lat_new= Latitude;
+				lg_new= Longitude;
+				delay_ms(1);
+				Red_blink();
+				distance = CalcGPSDistance(lat_old, lg_old,lat_new, lg_new);
+				Total_distance += distance;
+				TestDistance(Total_distance);
+				SevenSeg_Data(Total_distance,2);
+				lat_old= lat_new;
+				lg_old= lg_new;
+
+
+//		  	sprintf(distance_Display, "%.9f", distance);
+//				UART_outstring("Distance ");
+//				UART_outstring(distance_Display);
+//		 dist = CalcGPSDistance(30.053716529290657, 31.255879108910797,30.05336944148598, 31.255492772461782); //small distance for testing
+//		 dist = CalcGPSDistance(30.053716529290657, 31.255879108910797,30.052805288432584, 31.254816855794772); //Large distance for testing
+		}
+
+}
     
 
