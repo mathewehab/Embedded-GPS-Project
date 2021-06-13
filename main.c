@@ -55,3 +55,52 @@ void UART_outstring (char  *pt);
 void UART_outchar(char data);
 char UART_Inchar(void);
 double ConvertDegreeAngleTodouble(double degrees, double minutes, double seconds);
+
+void gps()
+{
+    while(finish==0){
+    
+        Gpsdata = UART_Inchar();
+        flg = 1;
+       if( Gpsdata=='$' && pos_cnt == 0)  		 // finding GPRMC header
+         pos_cnt=1;
+       if( Gpsdata=='G' && pos_cnt == 1)
+         pos_cnt=2;
+       if( Gpsdata=='P' && pos_cnt == 2)
+         pos_cnt=3;
+       if( Gpsdata=='R' && pos_cnt == 3)
+         pos_cnt=4;
+       if( Gpsdata=='M' && pos_cnt == 4)
+         pos_cnt=5;
+       if( Gpsdata=='C' && pos_cnt==5 )
+         pos_cnt=6;
+       if(pos_cnt==6 &&  Gpsdata ==','){   			// count commas in message
+         com_cnt++;
+         flg=0;
+       }
+
+       if(com_cnt==3 && flg==1){
+        lat[lat_cnt++] =  Gpsdata;         // latitude
+        flg=0;
+       }
+
+       if(com_cnt==5 && flg==1){
+         lg[log_cnt++] =  Gpsdata;         // Longitude
+         flg=0;
+       }
+
+       if( Gpsdata == '*' && com_cnt >= 5 && flg == 1){
+         lat[lat_cnt] ='\0';             // end of GPRMC message
+         lg[log_cnt]  = '\0';
+         
+				 com_cnt = 0;                      // end of GPRMC message
+         lat_cnt = 0;
+         log_cnt = 0;
+         flg     = 0;
+         finish  = 1;
+
+      }
+    }
+
+   finish = 0;
+   pos_cnt = 0;
