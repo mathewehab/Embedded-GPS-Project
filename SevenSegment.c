@@ -89,3 +89,4 @@ void SevenSeg_Data(int number, int seconds){
 	  	GPIO_PORTB_DATA_R |= 0x70;
 
 }
+
