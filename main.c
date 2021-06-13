@@ -104,3 +104,27 @@ void gps()
 
    finish = 0;
    pos_cnt = 0;
+	
+       
+   degrees_lat = ((int) lat_raw - ((int) lat_raw % 100)) / 100;
+   minutes_lat = lat_raw - ((int) lat_raw - ((int) lat_raw % 100));
+   seconds_lat = (lat_raw - (int) lat_raw) * 60;
+   Latitude = ConvertDegreeAngleTodouble(degrees_lat, minutes_lat, seconds_lat);    //final value in decimals
+             
+   degrees_lon = ((int) lg_raw - ((int) lg_raw % 100)) / 100;
+   minutes_lon = lg_raw - ((int) lg_raw - ((int) lg_raw % 100));
+   seconds_lon = (lg_raw - (int) lg_raw) * 60;
+   Longitude = ConvertDegreeAngleTodouble(degrees_lon, minutes_lon, seconds_lon);
+       
+   degrees_lat = 0;
+   minutes_lat = 0;
+   seconds_lat = 0;
+    
+   degrees_lon = 0; 
+   minutes_lon = 0;
+   seconds_lon = 0;
+	
+}
+    
+    
+
