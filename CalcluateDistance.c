@@ -6,18 +6,26 @@
 
 double haversine;
 double temp;
-double distance; 
+double calculated_distance; 
 
-double CalcGPSDistance(float latitud1, float longitud1, float latitud2, float longitud2){
+double CalcGPSDistance (double latitud1, double longitud1, double latitud2, double longitud2) {
 
         latitud1  *= DegreeToRadiant;
         longitud1 *= DegreeToRadiant;
         latitud2  *= DegreeToRadiant;
         longitud2 *= DegreeToRadiant;
  
-    haversine = (pow(sin((1.0 / 2) * (latitud2 - latitud1)), 2)) + ((cos(latitud1)) * (cos(latitud2)) * (pow(sin((1.0 / 2) * (longitud2 - longitud1)), 2)));
-    temp = 2 * asin(sqrt(haversine));
-    distance = EarthRadius * temp;
+        haversine = (pow(sin((1.0 / 2) * (latitud2 - latitud1)), 2)) + ((cos(latitud1)) * (cos(latitud2)) * (pow(sin((1.0 / 2) * (longitud2 - longitud1)), 2)));
+        
+        if (sqrt(haversine) > 1) {
+                temp = 2 * asin(1.0);
+        }
+        
+        else if (sqrt(haversine) < 1) {
+                temp = 2 * asin(sqrt(haversine));
+        }
+        
+        calculated_distance = EarthRadius * temp;
 
-    return distance;
+        return calculated_distance;
 }
