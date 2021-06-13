@@ -159,7 +159,7 @@ int main() {
 				Total_distance += distance;
 				TestDistance(Total_distance);
 				SevenSeg_Data(Total_distance,2);
-				lat_old= lat_new;
+				lat_old= lat_new; //move the new readings to the old readings to be ready for taking new ones
 				lg_old= lg_new;
 
 
