@@ -11,8 +11,8 @@ void delay_us(int);
 
 void LCD_init(void){
 	
-	   	SYSCTL_RCGCGPIO_R |=0x03;// enable clock for the ports i'm going to use (port B)
-	   	while((SYSCTL_PRGPIO_R & 0x03) == 0){};
+      SYSCTL_RCGCGPIO_R |=0x03;// enable clock for the ports i'm going to use (port B)
+      while((SYSCTL_PRGPIO_R & 0x03) == 0){};
       GPIO_PORTA_LOCK_R = GPIO_LOCK_KEY ;
       GPIO_PORTB_LOCK_R = GPIO_LOCK_KEY ;
         
