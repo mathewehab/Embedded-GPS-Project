@@ -31,13 +31,13 @@ void LCD_init(void){
       GPIO_PORTA_AMSEL_R&= ~0xE0; //disable analog selection
 }
 
-void LCD_Command(char com){ 			//Rs: PA5 ,, Rw: PA6 ,, EN: PA7 
+void LCD_Command(char com){ 			                 //Rs: PA5 ,, Rw: PA6 ,, EN: PA7 
 	
-			GPIO_PORTA_DATA_R = 0; 				//clear bits A5,A6 (rs&rw) 
+			GPIO_PORTA_DATA_R = 0; 			 //clear bits A5,A6 (rs&rw) 
 			GPIO_PORTB_DATA_R= com;
-			GPIO_PORTA_DATA_R|=0X80;			// enable A7 for Enable latch
+			GPIO_PORTA_DATA_R|=0X80;	         // enable A7 for Enable latch
 			delay_ms(1);
-			GPIO_PORTA_DATA_R &= ~0xE0; 	//return Enable latch back to zero //return Enable latch back to zero
+			GPIO_PORTA_DATA_R &= ~0xE0; 	         //return Enable latch back to zero //return Enable latch back to zero
     
 }
 
