@@ -11,7 +11,7 @@ void UART0_Init(void);
 
 
 void Startup(void){
-		     FPUEnable();
+		                 FPUEnable();
 				 FPULazyStackingEnable();
 				 RGBLED_Init();
 				 UART_Init();
