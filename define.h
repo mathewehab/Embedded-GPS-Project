@@ -33,18 +33,19 @@
 #define SYSCTL_RCGCGPIO_R       (*((volatile unsigned long *)0x400FE608))
 #define SYSCTL_PRGPIO_R         (*((volatile unsigned long *)0x400FEA08))
 	
-#define RED       0x02
-#define BLUE      0x04
-#define GREEN     0x08
+#define RED				0x02
+#define BLUE			0x04
+#define GREEN			0x08
 
 #define SW1 			0x10
 #define SW2 			0x01
 #define RGB 			0x0E
 
-#define PF123_mask             0x0E
-#define PF04_mask              0x11
-#define PF_mask                0x20
-#define PB_mask 							 0x02
+#define PF123_mask      0x0E
+#define PF04_mask       0x11
+#define PF_mask         0x20
+#define PB_mask 		0x02
+
 #define PI 3.14159265358979323846
 #define EarthRadius 6372797.56085
 #define DegreeToRadiant PI / 180

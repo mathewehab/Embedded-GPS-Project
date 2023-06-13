@@ -9,13 +9,11 @@ void SevenSeg_Init(void);
 void UART0_Init(void);
 
 
-
-void Startup(void){
-		                 FPUEnable();
-				 FPULazyStackingEnable();
-				 RGBLED_Init();
-				 UART_Init();
-				 SevenSeg_Init();
-				 UART0_Init();
-
+void Startup(void) {
+	FPUEnable();
+	FPULazyStackingEnable();
+	RGBLED_Init();
+	UART_Init();
+	SevenSeg_Init();
+	UART0_Init();
 }
